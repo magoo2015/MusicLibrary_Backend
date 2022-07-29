@@ -70,6 +70,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'music_library_backend.wsgi.application'
 CORS_ORIGIN_ALLOW=True
+REST_FRAMEWORK = {
+    'COERCE_DECIMAL_TO_STRING': False
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
