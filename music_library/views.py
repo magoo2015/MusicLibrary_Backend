@@ -38,7 +38,8 @@ def song_detail(request, pk):
         song.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-#Pretty much broke everything trying for the bonus. Had to remove 'likes' from serializers to get everything working right
+#Pretty much broke everything trying for the bonus. Had to remove 'likes' from serializers to get everything working 
+#Updated data in SQL then migrated which resolved issue.  Just need to get function working.
 @api_view(['PUT'])
 def song_like(request, pk):
     song = get_object_or_404(Song, pk=pk)
