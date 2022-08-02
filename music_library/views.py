@@ -1,3 +1,4 @@
+from functools import partial
 from django.shortcuts import get_object_or_404
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -40,13 +41,14 @@ def song_detail(request, pk):
 
 #Pretty much broke everything trying for the bonus. Had to remove 'likes' from serializers to get everything working 
 #Updated data in SQL then migrated which resolved issue.  Just need to get function working.
-@api_view(['PUT'])
+@api_view(['PATCH'])
 def song_like(request, pk):
     song = get_object_or_404(Song, pk=pk)
-    song.likes += 1
-    song.save()
-    serializer = SongSerializer(song, data=request.data)
-    return Response(serializer.data)
+    data = {'likes': song.likes + int(1)}
+    serializer = SongSerializer(song, data=data, partial=True)
+    serializer.is_valid(raise_exception=True)
+    serializer.save()
+    return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 
