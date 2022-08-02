@@ -69,7 +69,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'music_library_backend.wsgi.application'
-CORS_ORIGIN_ALLOW=True
+CORS_ORIGIN_ALLOW_ALL=True
 REST_FRAMEWORK = {
     'COERCE_DECIMAL_TO_STRING': False
 }
